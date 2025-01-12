@@ -7,6 +7,7 @@ import {
 } from "@react-three/drei";
 import TextModel from "./components/TextModel";
 import { useRef, useState, useEffect, useMemo } from "react";
+import StartSound from "./assets/audio/complete.mp3";
 
 function App() {
   const textRef = useRef();
@@ -39,8 +40,10 @@ function App() {
   }, [isActive, isPaused, minute, second]);
 
   const startTimer = () => {
+    let startSound = new Audio(StartSound);
     setIsActive(true);
     setIsPaused(false);
+    startSound.play();
   };
 
   const pauseTimer = () => {
@@ -106,7 +109,12 @@ function App() {
           <button className="btn start" role="button" onClick={startTimer}>
             Start
           </button>
-          <button className="btn pause" role="button" onClick={pauseTimer}>
+          <button
+            className="btn pause"
+            role="button"
+            onClick={pauseTimer}
+            disabled={!isActive}
+          >
             {isPaused ? "Resume" : "Pause"}
           </button>
           <button className="btn reset" role="button" onClick={resetTimer}>

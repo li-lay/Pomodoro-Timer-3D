@@ -35,8 +35,7 @@ body {
   touch-action: manipulation;
 }
 
-.btn:hover,
-.btn:focus {
+.btn:hover {
   opacity: 0.75;
 }
 
@@ -56,4 +55,9 @@ body {
 
 .start {
   background-color: #689d6a;
+}
+
+[disabled] {
+  pointer-events: none;
+  opacity: 0.75;
 }
